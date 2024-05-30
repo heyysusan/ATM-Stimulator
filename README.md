@@ -1,5 +1,7 @@
 # 🏦 ATM Simulation Program
 
+Project from Data Technician bootcamp at JustIT.
+
 This project simulates the behavior of an ATM using Python and the Tkinter library. The program allows users to:
 
 - 📋 Display their bank account balance

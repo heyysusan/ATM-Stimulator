@@ -85,5 +85,14 @@ This project simulates the behavior of an ATM using Python and the Tkinter libra
 This project is open-source and available under the MIT License. 📜
 
 ## Contributing
+![Screenshot 2024-05-30 154410](https://github.com/heyysusan/ATM-Stimulator/assets/168830084/fabeefd6-bd94-41e9-a8a3-29191a8b1662)
+
+![Screenshot 2024-05-30 154442](https://github.com/heyysusan/ATM-Stimulator/assets/168830084/49a4042d-0f62-4ada-b87a-6a04863dca9a)
+
+![Screenshot 2024-05-30 154458](https://github.com/heyysusan/ATM-Stimulator/assets/168830084/b4825b73-fa74-4eaa-b3e8-8eb762daa9fc)
+
+![Screenshot 2024-05-30 154513](https://github.com/heyysusan/ATM-Stimulator/assets/168830084/f3d186a6-9d01-4ecc-aead-b715d46245a7)
+
+![Screenshot 2024-05-30 154525](https://github.com/heyysusan/ATM-Stimulator/assets/168830084/4b1b8f7f-a4e5-451c-ad01-48ded05b3a32)
 
 Contributions are welcome! If you have suggestions for improvements or new features, feel free to open an issue or submit a pull request. 🤝

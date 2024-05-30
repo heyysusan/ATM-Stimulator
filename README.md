@@ -2,89 +2,259 @@
 
 Project from Data Technician bootcamp at JustIT.
 
-This project simulates the behavior of an ATM using Python and the Tkinter library. The program allows users to:
+### Part 1: ATM Simulation Program 🏦
 
-- 📋 Display their bank account balance
-- 💵 Deposit money into their account
-- 💸 Withdraw money from their account
-- 🚪 Exit the ATM
+This Python program simulates the behavior of an Automated Teller Machine (ATM). It allows users to check their balance, withdraw money, deposit money, and exit. The user must enter a correct PIN to access the ATM functionalities.
 
-## How to Run the Program
+#### Features ✨
+- **🔒 PIN Protection**: Users must enter a correct PIN to access the ATM menu.
+- **💰 Balance Inquiry**: Users can check their current account balance.
+- **💸 Money Withdrawal**: Users can withdraw preset amounts or enter a custom amount (multiples of £10).
+- **📥 Money Deposit**: Users can deposit money into their account.
+- **🚪 Exit Option**: Users can exit the ATM application.
 
-1. **Ensure Python is Installed**:
-    - You need to have Python 3.x installed on your system. You can download it from [python.org](https://www.python.org/). 🐍
+#### Requirements 📋
+- Python 3.x
 
-2. **Install Tkinter**:
-    - Tkinter is usually included with Python, but if you don't have it, you can install it using the following command:
-      ```bash
-      pip install tk
-      ```
+#### Usage 🚀
+1. Run the `atm.py` script.
+2. Enter the correct PIN (default PIN is `1234`).
+3. Select from the main menu options to perform various operations:
+    - Press `1` to check balance.
+    - Press `2` to withdraw money.
+    - Press `3` to deposit money.
+    - Press `4` to exit the application.
 
-3. **Download the Script**:
-    - Download the `atm_simulation.py` script from this repository. 📥
+#### Example 💡
+```bash
+$ python atm.py
+Please enter your PIN: 1234
 
-4. **Run the Script**:
-    - Navigate to the directory where you downloaded the script and run it using:
-      ```bash
-      python atm_simulation.py
-      ```
+ATM Main Menu:
+1. Display Balance
+2. Withdraw Money
+3. Deposit Money
+4. Exit
+Please select an option: 1
+Your current balance is: £1000
 
-## Usage
+ATM Main Menu:
+1. Display Balance
+2. Withdraw Money
+3. Deposit Money
+4. Exit
+Please select an option: 2
 
-1. **Access ATM**:
-    - When you run the script, a window will appear with a button labeled "Access ATM". Click this button to start using the ATM. 🔓
+Withdrawal Menu:
+1. £20
+2. £50
+3. £100
+4. Other Amount
+Select an option: 2
+£50 has been withdrawn from your account.
+Your new balance is: £950
+```
 
-2. **PIN Verification**:
-    - The program will prompt you to enter a PIN. The default PIN is `1234`. You have three attempts to enter the correct PIN. If the correct PIN is not entered within three attempts, the program will exit. 🔒
+#### Source Code 📂
+```python
+class ATM:
+    def __init__(self, balance=0, pin="1234"):
+        self.balance = balance
+        self.pin = pin
 
-3. **Main Menu**:
-    - After entering the correct PIN, the main menu will be displayed. You will have the following options:
-        - `1`: Display Balance 🧾
-        - `2`: Deposit Money 💵
-        - `3`: Withdraw Money 💸
-        - `4`: Exit 🚪
+    def check_pin(self):
+        while True:
+            entered_pin = input("Please enter your PIN: ")
+            if entered_pin == self.pin:
+                return True
+            else:
+                print("Incorrect PIN. Please try again.")
 
-### Options Detail
+    def main_menu(self):
+        print("\nATM Main Menu:")
+        print("1. Display Balance")
+        print("2. Withdraw Money")
+        print("3. Deposit Money")
+        print("4. Exit")
+        
+    def display_balance(self):
+        print(f"Your current balance is: £{self.balance}")
 
-- **Display Balance**:
-    - Select option `1` to display your current account balance. A message box will show the balance. 🧾
+    def withdraw_money(self):
+        print("\nWithdrawal Menu:")
+        print("1. £20")
+        print("2. £50")
+        print("3. £100")
+        print("4. Other Amount")
+        option = input("Select an option: ")
+        
+        if option == '1':
+            self.withdraw_amount(20)
+        elif option == '2':
+            self.withdraw_amount(50)
+        elif option == '3':
+            self.withdraw_amount(100)
+        elif option == '4':
+            amount = int(input("Enter the amount you wish to withdraw: "))
+            if amount % 10 == 0:
+                self.withdraw_amount(amount)
+            else:
+                print("The amount must be a multiple of 10.")
+        else:
+            print("Invalid option selected. Please try again.")
+        
+    def withdraw_amount(self, amount):
+        if amount > self.balance:
+            print("Insufficient funds.")
+        else:
+            self.balance -= amount
+            print(f"£{amount} has been withdrawn from your account.")
+            print(f"Your new balance is: £{self.balance}")
 
-- **Deposit Money**:
-    - Select option `2` to deposit money into your account. You will be prompted to enter the amount to deposit. If the entered amount is positive, it will be added to your balance, and a confirmation message will be displayed. 💵
+    def deposit_money(self):
+        amount = int(input("Enter the amount you wish to deposit: "))
+        self.balance += amount
+        print(f"£{amount} has been deposited into your account.")
+        print(f"Your new balance is: £{self.balance}")
 
-- **Withdraw Money**:
-    - Select option `3` to withdraw money. A sub-menu will appear with predefined amounts (£10, £20, £50, £100, £200) and an option for "Other Amount".
-        - If you choose a predefined amount, the withdrawal will be processed if the amount is a multiple of 10 and does not exceed the current balance. 💸
-        - If you choose "Other Amount", you will be prompted to enter a custom amount. The custom amount must be a multiple of 10 and within the available balance to be processed. 🔢
+    def run(self):
+        if self.check_pin():
+            while True:
+                self.main_menu()
+                choice = input("Please select an option: ")
+                
+                if choice == '1':
+                    self.display_balance()
+                elif choice == '2':
+                    self.withdraw_money()
+                elif choice == '3':
+                    self.deposit_money()
+                elif choice == '4':
+                    print("Thank you for using the ATM. Goodbye!")
+                    break
+                else:
+                    print("Invalid choice. Please try again.")
 
-- **Exit**:
-    - Select option `4` to exit the program. A goodbye message will be displayed, and the program will close. 👋
+# Create an instance of the ATM class and run the program
+atm = ATM(balance=1000)  # You can set an initial balance
+atm.run()
+```
 
-### Important Notes
+### Part 2: Adding a Graphic Interface with Tkinter 🖥️
 
-- **Initial Balance**:
-    - The initial balance is set to £1000. 💰
+Extend the ATM simulation program with a graphical user interface (GUI) using the Tkinter library.
 
-- **Withdrawal Conditions**:
-    - Withdrawals must be in multiples of £10.
-    - The withdrawal amount must not exceed the current balance.
+#### Features ✨
+- **🔒 PIN Protection**: Users must enter a correct PIN to access the ATM menu.
+- **💰 Balance Inquiry**: Users can check their current account balance.
+- **💸 Money Withdrawal**: Users can withdraw preset amounts or enter a custom amount (multiples of £10).
+- **📥 Money Deposit**: Users can deposit money into their account.
+- **🚪 Exit Option**: Users can exit the ATM application.
 
-## Dependencies
+#### Requirements 📋
+- Python 3.x
+- Tkinter (usually included with Python installations)
 
-- **Python 3.x**: Ensure you have Python 3.x installed. 🐍
-- **Tkinter**: The Tkinter library is used for the graphical interface. 🖼️
+#### Usage 🚀
+1. Run the `atm_gui.py` script.
+2. Enter the correct PIN in the GUI (default PIN is `1234`).
+3. Use the buttons and input fields in the GUI to perform various operations.
 
-## Troubleshooting
+#### Example GUI 💡
+A sample screenshot or description of how the GUI looks and works.
 
-- **Incorrect PIN**:
-    - If you enter an incorrect PIN three times, the program will exit. Restart the program to try again. 🔐
+#### Source Code 📂
+```python
+import tkinter as tk
+from tkinter import messagebox
 
-- **Invalid Amounts**:
-    - When depositing or withdrawing, ensure the amounts are valid (positive integers for deposits and multiples of 10 for withdrawals). ❌
+class ATMGUI:
+    def __init__(self, root):
+        self.root = root
+        self.root.title("ATM Machine")
+        self.balance = 1000
+        self.pin = "1234"
+        self.create_widgets()
+        
+    def create_widgets(self):
+        self.pin_label = tk.Label(self.root, text="Enter PIN:")
+        self.pin_label.pack()
+        
+        self.pin_entry = tk.Entry(self.root, show="*")
+        self.pin_entry.pack()
+        
+        self.pin_button = tk.Button(self.root, text="Submit", command=self.check_pin)
+        self.pin_button.pack()
+        
+        self.menu_frame = tk.Frame(self.root)
+        
+        self.balance_button = tk.Button(self.menu_frame, text="Display Balance", command=self.display_balance)
+        self.balance_button.pack(fill='x')
+        
+        self.withdraw_button = tk.Button(self.menu_frame, text="Withdraw Money", command=self.withdraw_money)
+        self.withdraw_button.pack(fill='x')
+        
+        self.deposit_button = tk.Button(self.menu_frame, text="Deposit Money", command=self.deposit_money)
+        self.deposit_button.pack(fill='x')
+        
+        self.exit_button = tk.Button(self.menu_frame, text="Exit", command=self.root.quit)
+        self.exit_button.pack(fill='x')
+        
+    def check_pin(self):
+        if self.pin_entry.get() == self.pin:
+            self.pin_label.pack_forget()
+            self.pin_entry.pack_forget()
+            self.pin_button.pack_forget()
+            self.menu_frame.pack()
+        else:
+            messagebox.showerror("Error", "Incorrect PIN. Please try again.")
+    
+    def display_balance(self):
+        messagebox.showinfo("Balance", f"Your current balance is: £{self.balance}")
+    
+    def withdraw_money(self):
+        amount = tk.simpledialog.askinteger("Withdraw", "Enter amount to withdraw")
+        if amount:
+            if amount % 10 != 0:
+                messagebox.showerror("Error", "Amount must be a multiple of 10.")
+            elif amount > self.balance:
+                messagebox.showerror("Error", "Insufficient funds.")
+            else:
+                self.balance -= amount
+                messagebox.showinfo("Withdraw", f"£{amount} has been withdrawn from your account.")
+    
+    def deposit_money(self):
+        amount = tk.simpledialog.askinteger("Deposit", "Enter amount to deposit")
+        if amount:
+            self.balance += amount
+            messagebox.showinfo("Deposit", f"£{amount} has been deposited into your account.")
 
-## License
+if __name__ == "__main__":
+    root = tk.Tk()
+    app = ATMGUI(root)
+    root.mainloop()
+```
 
-This project is open-source and available under the MIT License. 📜
+### Installation 💻
+1. Clone the repository to your local machine.
+2. Navigate to the project directory.
+3. Run the `atm.py` script for the command-line version or the `atm_gui.py` script for the graphical version.
+
+```bash
+# Clone the repository
+git clone https://github.com/your-username/atm-simulation.git
+
+# Navigate to the project directory
+cd atm-simulation
+
+# Run the command-line ATM simulation
+python atm.py
+
+# OR
+
+# Run the graphical ATM simulation
+python atm_gui.py
+```
 
 ## Contributing
 ![Screenshot 2024-05-30 154410](https://github.com/heyysusan/ATM-Stimulator/assets/168830084/fabeefd6-bd94-41e9-a8a3-29191a8b1662)

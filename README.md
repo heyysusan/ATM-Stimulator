@@ -263,6 +263,10 @@ python atm_gui.py
 
 ![Screenshot 2024-05-30 154458](https://github.com/heyysusan/ATM-Stimulator/assets/168830084/b4825b73-fa74-4eaa-b3e8-8eb762daa9fc)
 
+![Screenshot 2024-05-26 162409](https://github.com/heyysusan/ATM-Stimulator/assets/168830084/2c8ff5c6-aaf1-4f0a-844c-fc39925e8880)
+
+![Screenshot 2024-05-26 162439](https://github.com/heyysusan/ATM-Stimulator/assets/168830084/e7a0d479-2073-4d72-8167-bf306a1aa672)
+
 ![Screenshot 2024-05-30 154513](https://github.com/heyysusan/ATM-Stimulator/assets/168830084/f3d186a6-9d01-4ecc-aead-b715d46245a7)
 
 ![Screenshot 2024-05-30 154525](https://github.com/heyysusan/ATM-Stimulator/assets/168830084/4b1b8f7f-a4e5-451c-ad01-48ded05b3a32)
